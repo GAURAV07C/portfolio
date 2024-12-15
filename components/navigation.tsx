@@ -24,16 +24,27 @@ export function Navigation() {
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b"
     >
-      <nav className="container mx-auto px-4 h-16 flex items-center justify-end">
+      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Button
+          variant="ghost"
+          className="font-bold text-xl hover:text-primary transition-colors"
+          onClick={() => {
+            document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          GAURAV07C
+        </Button>
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4">
           {navItems.map((item) => (
-            <Button 
-              key={item.name} 
-              variant="ghost" 
+            <Button
+              key={item.name}
+              variant="ghost"
               className="hover:text-primary transition-colors"
               onClick={() => {
-                document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
               }}
             >
               {item.name}
@@ -68,7 +79,7 @@ export function Navigation() {
                   variant="ghost"
                   className="w-full justify-start hover:text-primary transition-colors"
                   onClick={() => {
-                    document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
                     setIsOpen(false);
                   }}
                 >
@@ -76,7 +87,7 @@ export function Navigation() {
                 </Button>
               ))}
               <div className="pt-2 border-t">
-                <ModeToggle  />
+                <ModeToggle />
               </div>
             </div>
           </motion.div>

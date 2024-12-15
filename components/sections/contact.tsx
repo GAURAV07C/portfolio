@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Twitter } from "lucide-react";
 
 export function Contact() {
   return (
@@ -110,6 +110,16 @@ export function Contact() {
               >
                 <Linkedin className="h-6 w-6 text-primary" />
                 <span>LinkedIn Profile</span>
+              </a>
+
+              <a
+                href={personalInfo.socialLinks.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 rounded-lg bg-card hover:bg-accent transition-colors"
+              >
+                <Twitter className="h-6 w-6 text-primary" />
+                <span>Twitter Profile</span>
               </a>
 
               <a

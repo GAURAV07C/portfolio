@@ -13,9 +13,9 @@ export const projects: Project[] = [
     title: "Threads Clone",
     description: "A social media platform built with Next.js 13, featuring real-time updates and modern UI",
     image: "/projects/threads.svg",
-    tags: ["Next.js", "TypeScript", "MongoDB", "Clerk Auth"],
-    link: "https://github.com/GAURAV07C/Threads",
-    github: "https://github.com/GAURAV07C/Threads",
+    tags: ["Next.js", "TypeScript", "postgresql", "Next Auth"],
+    link: "https://github.com/GAURAV07C/Threads_clone",
+    github: "https://github.com/GAURAV07C/Threads_clone",
     featured: true
   },
   {
@@ -26,15 +26,6 @@ export const projects: Project[] = [
     link: "https://github.com/GAURAV07C/portfolio",
     github: "https://github.com/GAURAV07C/portfolio",
     featured: true
-  },
-  {
-    title: "Task Manager",
-    description: "A full-stack task management application with authentication and real-time updates",
-    image: "/projects/task-manager.svg",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
-    link: "https://github.com/GAURAV07C/task-manager",
-    github: "https://github.com/GAURAV07C/task-manager",
-    featured: false
   },
 ];
 
