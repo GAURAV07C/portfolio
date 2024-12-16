@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-// import Link from "next/link";
+import { motion } from "framer-motion";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // Importing Sheet components
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -54,45 +54,38 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
+        <Sheet>
+          <SheetTrigger asChild>
+            <button
+              className="md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+               <Menu size={24} />
+            </button>
+          </SheetTrigger>
 
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <Button
-                  key={item.name}
-                  variant="ghost"
-                  className="w-full justify-start hover:text-primary transition-colors"
-                  onClick={() => {
-                    document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
-                    setIsOpen(false);
-                  }}
-                >
-                  {item.name}
-                </Button>
-              ))}
-              <div className="pt-2 border-t">
-                <ModeToggle />
-              </div>
+          {/* Mobile Navigation - Sheet Content */}
+          <SheetContent  className="flex flex-col space-y-4 py-4 px-6 bg-background/80 border-l border-t border-b backdrop-blur-lg">
+            {navItems.map((item) => (
+              <Button
+                key={item.name}
+                variant="ghost"
+                className="w-full justify-start hover:text-primary transition-colors"
+                onClick={() => {
+                  document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+                  setIsOpen(false);
+                }}
+              >
+                {item.name}
+              </Button>
+            ))}
+            <div className="pt-2 border-t">
+              <ModeToggle />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </SheetContent>
+        </Sheet>
+      </nav>
     </motion.header>
   );
 }

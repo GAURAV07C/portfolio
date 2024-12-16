@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { projects } from "@/data/projects";
+import { projects, projectCategories } from "@/data/projects"; // Import projects and categories
 import { Github, ExternalLink } from "lucide-react";
 import { PlaceholderImage } from "@/components/ui/placeholder-image";
 
+// Framer-motion animations for project container and items
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -22,6 +24,14 @@ const item = {
 };
 
 export function Projects() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Filter projects based on selected category
+  const filteredProjects = projects.filter((project) => {
+    if (selectedCategory === "All") return true; // Show all projects when "All" is selected
+    return project.category === selectedCategory; // Show projects matching the selected category
+  });
+
   return (
     <section id="projects" className="py-20 min-h-screen bg-gradient-to-b from-background to-secondary/20">
       <div className="container mx-auto px-4">
@@ -40,6 +50,23 @@ export function Projects() {
           </p>
         </motion.div>
 
+        {/* Category Filter */}
+        <div className="text-center mb-12">
+          <div className="flex justify-center gap-4">
+            {projectCategories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "gradient" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Display Filtered Projects */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -47,7 +74,7 @@ export function Projects() {
           viewport={{ once: true }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <motion.div
               key={project.title}
               variants={item}
@@ -112,4 +139,4 @@ export function Projects() {
       </div>
     </section>
   );
-} 
+}

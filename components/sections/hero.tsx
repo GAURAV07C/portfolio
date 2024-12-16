@@ -7,6 +7,11 @@ import { personalInfo } from "@/data/personal-info";
 import { ResumeModal } from "@/components/ui/resume-modal";
 import { FileText, Send } from "lucide-react";
 
+const resumeData = {
+  imageUrl: "/images/gaurav_resume.png",  // Image URL for the resume preview
+  pdfUrl: "/images/Gaurav_Resume (2).pdf",  // PDF URL for downloading the resume
+};
+
 // Profile SVG component
 const ProfileSVG = () => (
   <svg
@@ -105,10 +110,13 @@ export function Hero() {
         </div>
       </section>
 
-      <ResumeModal
+      {/* Adding a key prop to force remounting when the modal is opened */}
+      <ResumeModal 
+       resumeData={resumeData}
+        key={isResumeModalOpen ? "open" : "closed"}
         isOpen={isResumeModalOpen}
         onClose={() => setIsResumeModalOpen(false)}
       />
     </>
   );
-} 
+}

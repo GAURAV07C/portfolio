@@ -1,50 +1,55 @@
 interface Skill {
-    name: string;
+    id:number;
+    title: string;
     image: string;
-    category: "Frontend" | "Backend" | "Tools" | "Database";
+    level:number;
+    
 }
 
 export const skills: Skill[] = [
     {
-        name: "React",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Frontend"
-    },
-    {
-        name: "Next.js",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Frontend"
-    },
-    {
-        name: "Node.js",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Backend"
-    },
-    {
-        name: "TypeScript",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Frontend"
-    },
-    {
-        name: "MongoDB",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Database"
-    },
-    {
-        name: "Express.js",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Backend"
-    },
-    {
-        name: "Tailwind CSS",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Frontend"
-    },
-    {
-        name: "Git",
-        image: "/images/skills/dummy-skill.svg",
-        category: "Tools"
-    }
+        id: 1,
+        title: "React",
+        image: "/skills/react.svg",
+        level: 90,
+      },
+      {
+        id: 2,
+        title: "CSS",
+        image: "/skills/css.svg",
+        level: 90,
+      },
+      {
+        id: 3,
+        title: "JavaScript",
+        image: "/skills/js.svg",
+        level: 90,
+      },
+      {
+        id: 4,
+        title: "TypeScript",
+        image: "/skills/ts.svg",
+        level: 90,
+      },
+      {
+        id: 5,
+        title: "HTML",
+        image: "/skills/html.svg",
+        level: 90,
+      },
+      {
+        id: 6,
+        title: "Node JS",
+        image: "/skills/node.svg",
+        level: 90,
+      },
+      {
+        id: 7,
+        title: "MongoDB",
+        image: "/skills/mongo.svg",
+        level: 90,
+      },
+    
 ];
 
 export const skillCategories = {

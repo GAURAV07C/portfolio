@@ -89,3 +89,17 @@
     @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
   }
 }
+
+
+@layer components {
+  .nav__link {
+      @apply relative text-base font-medium w-fit block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 text-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right
+  }
+
+  .text-bg {
+      background-image: linear-gradient(to right , #8750f7 0%, #ffff 100% );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+}
