@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { projects, projectCategories } from "@/data/projects"; // Import projects and categories
+import { projectsByCategory, filterData } from "@/data/projects"; // Import the new structure
 import { Github, ExternalLink } from "lucide-react";
 import { PlaceholderImage } from "@/components/ui/placeholder-image";
 
@@ -26,11 +26,11 @@ const item = {
 export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Filter projects based on selected category
-  const filteredProjects = projects.filter((project) => {
-    if (selectedCategory === "All") return true; // Show all projects when "All" is selected
-    return project.category === selectedCategory; // Show projects matching the selected category
-  });
+  // Flatten the projects into a single array based on selected category
+  const filteredProjects = selectedCategory === "All" 
+    ? projectsByCategory.flatMap((category) => category.projects)
+    : projectsByCategory
+        .find((category) => category.category === selectedCategory)?.projects || [];
 
   return (
     <section id="projects" className="py-20 min-h-screen bg-gradient-to-b from-background to-secondary/20">
@@ -53,14 +53,14 @@ export function Projects() {
         {/* Category Filter */}
         <div className="text-center mb-12">
           <div className="flex justify-center gap-4">
-            {projectCategories.map((category) => (
+            {filterData.map((category) => (
               <Button
-                key={category}
-                variant={selectedCategory === category ? "gradient" : "outline"}
+                key={category.id}
+                variant={selectedCategory === category.title ? "gradient" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => setSelectedCategory(category.title)}
               >
-                {category}
+                {category.title}
               </Button>
             ))}
           </div>

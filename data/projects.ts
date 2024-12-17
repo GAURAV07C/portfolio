@@ -1,43 +1,86 @@
-// Define the structure for projects
+// Define the structure for a project
 export interface Project {
   title: string;
   description: string;
   image: string;
   tags: string[];
-  link: string;
-  github: string;
+  link: string; // Live link or demo
+  github: string; // GitHub repository
   featured: boolean;
-  category: string; // Category to filter projects
 }
 
-// Example projects data
-export const projects: Project[] = [
+// Define the structure for a project category
+export interface ProjectCategory {
+  category: string; // e.g., "Full Stack", "Frontend"
+  projects: Project[]; // Array of projects in the category
+}
+
+// Example projects data organized by category
+export const projectsByCategory: ProjectCategory[] = [
   {
-    title: "Threads Clone",
-    description: "A social media platform built with Next.js 13, featuring real-time updates and modern UI.",
-    image: "/projects/threads.svg",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Next Auth"],
-    link: "https://github.com/GAURAV07C/Threads_clone",
-    github: "https://github.com/GAURAV07C/Threads_clone",
-    featured: true,
-    category: "Full Stack", // Category of the project
+    category: "Full Stack",
+    projects: [
+      {
+        title: "Threads Clone",
+        description: "A social media platform built with Next.js 13, featuring real-time updates and modern UI.",
+        image: "/projects/threads.svg",
+        tags: ["Next.js", "TypeScript", "PostgreSQL", "Next Auth"],
+        link: "https://threads-clone.vercel.app",
+        github: "https://github.com/GAURAV07C/Threads_clone",
+        featured: true,
+      },
+    ],
   },
   {
-    title: "Portfolio Website",
-    description: "My personal portfolio website built with Next.js and Tailwind CSS.",
-    image: "/projects/portfolio.svg",
-    tags: ["Next.js", "React", "Tailwind CSS"],
-    link: "https://github.com/GAURAV07C/portfolio",
-    github: "https://github.com/GAURAV07C/portfolio",
-    featured: true,
-    category: "Frontend", // Category of the project
+    category: "Frontend",
+    projects: [
+      {
+        title: "Portfolio Website",
+        description: "My personal portfolio website built with Next.js and Tailwind CSS.",
+        image: "/projects/portfolio.svg",
+        tags: ["Next.js", "React", "Tailwind CSS"],
+        link: "https://portfolio-gaurav.vercel.app",
+        github: "https://github.com/GAURAV07C/portfolio",
+        featured: true,
+      },
+    ],
   },
-  // Add more projects as needed
+  // Add more categories and projects as needed
 ];
 
-export const projectCategories = [
-  "All", // Option to show all projects
-  "Frontend", // Filter for frontend projects
-  "Backend", // Filter for backend projects (add more projects if needed)
-  "Full Stack", // Filter for full-stack projects
+export interface FilterData {
+  id:number;
+  title:string;
+}
+
+
+export const filterData:FilterData[] = [
+  {
+    id: 1,
+    title: "All",
+  },
+  {
+    id: 2,
+    title: "Full Stack",
+  },
+  {
+    id: 3,
+    title: "Frontend",
+  },
+  {
+    id: 4,
+    title: "Backend",
+  },
+  
 ];
+
+
+
+
+
+
+
+
+
+
+

@@ -28,7 +28,7 @@ export function Navigation() {
         {/* Logo */}
         <Button
           variant="ghost"
-          className="font-bold text-xl hover:text-primary transition-colors"
+          className="font-bold text-xl hover:text-primary font-samarkan transition-colors"
           onClick={() => {
             document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
           }}
