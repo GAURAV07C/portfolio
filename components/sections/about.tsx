@@ -3,7 +3,7 @@ import { aboutInfo } from '@/data/aboutdata';
 import React from 'react';
 import { FactoryIcon } from 'lucide-react';
 
-const About = () => {
+export function About() {
   return (
     <div className="pt-16 pb-16 bg-[#050709]">
       <SectionHeading>About Me</SectionHeading>
@@ -41,4 +41,4 @@ const About = () => {
   );
 };
 
-export default About;
+

@@ -8,7 +8,7 @@ import { SkillSection } from "@/components/SkillSection";
 import { Experience } from "@/components/Experience";
 
 import Services from "@/components/Services/Services";
-import About from "@/components/sections/About";
+import { About } from "@/components/sections/About";
 
 
 export default function Home() {
