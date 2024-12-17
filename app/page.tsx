@@ -4,12 +4,12 @@ import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
 import { Contact } from "@/components/sections/contact";
 import { SkillSection } from "@/components/SkillSection";
-// import { Services } from "@/components/ServicesCompont";
+
 import { Experience } from "@/components/Experience";
-import About from "@/components/sections/About";
+
 import Services from "@/components/Services/Services";
-// import SkillSection from "@/components/SkillSection";
-// import Skills from "@/components/skills";
+import About from "@/components/sections/About";
+
 
 export default function Home() {
   return (
