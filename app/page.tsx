@@ -8,7 +8,8 @@ import { SkillSection } from "@/components/SkillSection";
 import { Experience } from "@/components/Experience";
 
 import Services from "@/components/Services/Services";
-import { About } from "@/components/sections/About";
+// import { About } from "@/components/sections/About";
+import AboutSection from "@/components/sections/AboutSection";
 
 
 export default function Home() {
@@ -18,8 +19,8 @@ export default function Home() {
       <Navigation />
       <main className="flex min-h-screen flex-col ">
         <Hero />
-        
-        <About />
+        <AboutSection />
+        {/* <About /> */}
         {/* <Services /> */}
         <Services />
         <Experience />
