@@ -1,36 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { projectsByCategory, filterData } from "@/data/projects"; // Import the new structure
-import { Github, ExternalLink } from "lucide-react";
-import { PlaceholderImage } from "@/components/ui/placeholder-image";
-
-// Framer-motion animations for project container and items
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+import { projectsByCategory, filterData } from "@/data/projects";
+import { ProjectCard } from "./project-card";
 
 export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Flatten the projects into a single array based on selected category
-  const filteredProjects = selectedCategory === "All" 
+  const filteredProjects = selectedCategory === "All"
     ? projectsByCategory.flatMap((category) => category.projects)
-    : projectsByCategory
-        .find((category) => category.category === selectedCategory)?.projects || [];
+    : projectsByCategory.flatMap((category) =>
+        category.projects.filter((project) =>
+          selectedCategory === category.category ||
+          project.tags.includes(selectedCategory)
+        )
+      );
 
   return (
     <section id="projects" className="py-20 min-h-screen bg-gradient-to-b from-background to-secondary/20">
@@ -50,15 +36,15 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
         <div className="text-center mb-12">
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
             {filterData.map((category) => (
               <Button
                 key={category.id}
                 variant={selectedCategory === category.title ? "gradient" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory(category.title)}
+                className="min-w-[100px]"
               >
                 {category.title}
               </Button>
@@ -66,76 +52,27 @@ export function Projects() {
           </div>
         </div>
 
-        {/* Display Filtered Projects */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {filteredProjects.map((project) => (
+        <AnimatePresence mode="wait">
+          {filteredProjects.length > 0 ? (
             <motion.div
-              key={project.title}
-              variants={item}
-              className="group relative bg-card rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              layout
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              <div className="relative h-48 w-full overflow-hidden">
-                <PlaceholderImage
-                  src={project.image}
-                  alt={project.title}
-                  className="rounded-t-lg"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  <Button variant="outline" size="sm" asChild>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      <Github className="h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button variant="gradient" size="sm" asChild>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Live Demo
-                    </a>
-                  </Button>
-                </div>
-              </div>
+              {filteredProjects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-center py-20"
+            >
+              <p className="text-muted-foreground">No projects found for this category.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

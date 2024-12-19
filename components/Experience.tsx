@@ -32,7 +32,7 @@ export function Experience() {
           >
             <h3 className="text-2xl font-bold mb-6 text-primary">Journey</h3>
             <div className="border-l-2 border-primary/20 pl-6 space-y-8">
-              {[{ year: "2024", title: "Looking for a job", description: "Not started" }].map((item, index) => (
+              {[{month:"Dec", year: "2024", title: "DevAurasion Community", description: "Building the DevAurasion Community website to provide resources, guidance, and support for developers." }].map((item, index) => (
                 <motion.div
                   key={item.year}
                   initial={{ opacity: 0, x: 20 }}
@@ -43,7 +43,7 @@ export function Experience() {
                 >
                   <div className="absolute -left-[31px] h-4 w-4 rounded-full bg-primary" />
                   <div className="bg-card hover-card rounded-lg p-6 shadow-md">
-                    <span className="text-sm text-primary font-mono">{item.year}</span>
+                    <span className="text-sm text-primary font-mono">{item.month}-{item.year}</span>
                     <h4 className="text-lg font-semibold mt-1">{item.title}</h4>
                     <p className="text-muted-foreground mt-1">{item.description}</p>
                   </div>

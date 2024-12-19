@@ -7,7 +7,7 @@ import { Github, Linkedin, Mail, Send, Twitter } from "lucide-react";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 min-h-screen relative">
+    <section id="contact" className="py-20 min-h-screen relative bg-gradient-to-b from-background to-secondary/20">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-white/10 bg-grid-small" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
@@ -145,4 +145,4 @@ export function Contact() {
       </div>
     </section>
   );
-} 
+}

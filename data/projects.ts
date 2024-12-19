@@ -49,12 +49,12 @@ export const projectsByCategory: ProjectCategory[] = [
 ];
 
 export interface FilterData {
-  id:number;
-  title:string;
+  id: number;
+  title: string;
+  tags?: string[]; // Optional tags property
 }
 
-
-export const filterData:FilterData[] = [
+export const filterData: FilterData[] = [
   {
     id: 1,
     title: "All",
@@ -71,7 +71,17 @@ export const filterData:FilterData[] = [
     id: 4,
     title: "Backend",
   },
-  
+  {
+    id: 5,
+    title: "Next.js",
+    tags: ["Next.js"],
+  },
+  {
+    id: 6,
+    title: "TypeScript",
+    tags: ["TypeScript"],
+  },
+  // Add more filters as needed
 ];
 
 

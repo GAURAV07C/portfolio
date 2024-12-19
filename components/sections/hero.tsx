@@ -8,8 +8,8 @@ import { ResumeModal } from "@/components/ui/resume-modal";
 import { FileText, Send } from "lucide-react";
 
 const resumeData = {
-  imageUrl: "/images/gaurav_resume.png",  // Image URL for the resume preview
-  pdfUrl: "/images/Gaurav_Resume (2).pdf",  // PDF URL for downloading the resume
+  imageUrl: "/images/Gaurav_resume.svg",  // Image URL for the resume preview
+  pdfUrl: "/images/Gaurav_Resume.pdf",  // PDF URL for downloading the resume
 };
 
 // Profile SVG component
@@ -42,7 +42,7 @@ export function Hero() {
 
   return (
     <>
-      <section id="home" className="min-h-screen pt-16 flex items-center">
+      <section id="home" className="min-h-screen pt-16 flex items-center bg-gradient-to-b from-background to-secondary/20">
         <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
